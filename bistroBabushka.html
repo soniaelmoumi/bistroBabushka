@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="da">
+
+
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bistro Babushka</title>
+    <link rel="stylesheet" href="">
+    <style>
+        img {
+            width: 100%;
+        }
+
+        section {
+            padding: 30px;
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
+            grid-template-rows: 1fr 1fr 1fr 1fr;
+            grid-gap: 20px;
+        }
+
+        article {
+            border: 1px solid black;
+        }
+
+        p {
+            text-align: center;
+        }
+
+        h2 {
+            text-align: center;
+        }
+
+        nav {
+            float: none;
+  position: absolute;
+  top: 2%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+            padding: 10px;
+        }
+
+        .valgt{
+            background-color: red;
+        }
+
+
+
+    </style>
+</head>
+
+
+
+<body>
+   <header>
+      <h1>Alle</h1>
+       <nav>
+           <button data-retter="alle" class="valgt">Alle</button>
+           <button data-retter="forretter" >Forretter</button>
+           <button data-retter="hovedretter">Hovedretter</button><button data-retter="sideorders">Sideorders</button>
+           <button data-retter="desserter">Desserter</button>
+           <button data-retter="drikkevarer">Drikkevarer</button>
+       </nav>
+   </header>
+    <template>
+        <article>
+
+
+
+            <h2></h2>
+            <img class="billede">
+            <p class="id"></p>
+            <p class="kategori"></p>
+            <p class="langBeskrivelse"></p>
+            <p class="kortBeskrivelse"></p>
+            <p class="oprindelsesRegion"></p>
+            <p class="pris"></p>
+
+
+
+        </article>
+
+
+
+    </template>
+
+
+
+    <main>
+        <section id="menu">
+
+
+
+        </section>
+    </main>
+
+
+
+    <script>
+        const url = "https://babushka-dd8a.restdb.io/rest/menu";
+        const medieurl = "https://babushka-dd8a.restdb.io/media/";
+        const sektion = document.querySelector("#menu");
+        const template = document.querySelector("template").content;
+        const options = {
+            headers: {
+                'x-apikey': "600ec2fb1346a1524ff12de4"
+            }
+        };
+        const header = document.querySelector("header h1");
+
+
+ document.addEventListener("DOMContentLoaded", start)
+        let retter;
+        let filter = "alle";
+
+
+
+        function start() {
+            console.log("start");
+            const filterKnapper = document.querySelectorAll("nav button");
+            filterKnapper.forEach(knap => knap.addEventListener("click", filtrerRetter));
+            hentData();
+        }
+
+        function filtrerRetter(){
+            filter = this.dataset.retter;
+ document.querySelector(".valgt").classList.remove("valgt");
+            this.classList.add("valgt")
+            vis();
+            header.textContent = this.textContent;
+
+        }
+
+
+
+        async function hentData() {
+            const resspons = await fetch(url, options);
+            retter = await resspons.json();
+            //personer = await JSONData.json();
+            console.log("Retter", retter);
+            //console.log("json: ", json);
+
+
+
+            vis();
+
+
+
+        }
+
+
+
+        function vis() {
+            console.log("vis");
+            sektion.textContent = "";
+            retter.forEach(ret => {
+                console.log("Retter", ret.kategori);
+                if (filter == ret.kategori || filter == "alle" ) {
+                    const klon = template.cloneNode(true);
+                    klon.querySelector(".billede").src = medieurl + ret.billede;
+                    klon.querySelector("h2").textContent = ret.navn;
+                    klon.querySelector(".id").textContent = ret.id;
+                    klon.querySelector(".kategori").textContent = ret.kategori;
+                    klon.querySelector(".kortBeskrivelse").textContent = ret.kortBeskrivelse;
+                    klon.querySelector(".langBeskrivelse").textContent = ret.langBeskrivelse;
+                    klon.querySelector(".pris").textContent = ret.pris;
+                    klon.querySelector(".oprindelsesRegion").textContent = ret.oprindelsesRegion;
+
+                    sektion.appendChild(klon);
+                }
+
+
+
+            })
+        }
+
+
+
+    </script>
+</body>
+
+
+
+</html>
