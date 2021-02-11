@@ -18,6 +18,7 @@
     font-style: normal;
 
 }
+
         section {
             padding: 30px;
             display: grid;
@@ -28,6 +29,17 @@
         img {
             width: 100%;
             align-content: center;
+        }
+
+        .bannerBillede{
+            padding: 20px 2px 20px 2px;
+        }
+
+        h1{
+        text-align: center;
+             font-family: 'mbf_taurianregular';
+            font-weight: normal;
+    font-style: normal;
         }
 /*
 
@@ -74,20 +86,20 @@
 
 <body>
     <header>
-
-        <nav>
-            <div class="bannerBillede">
-     <img src="babushkaLogo.png" alt="headerBillede">
-
+<div class="bannerBillede">
+     <img src="babushkaLogo.svg" alt="headerBillede">
   </div>
-            <button data-retter="alle" class="valgt">Alle</button>
+       <h1>Alle</h1>
+        <nav>
+              <button data-retter="alle" class="valgt">Alle</button>
             <button data-retter="forretter">Forretter</button>
             <button data-retter="hovedretter">Hovedretter</button><button data-retter="sideorders">Sideorders</button>
             <button data-retter="desserter">Desserter</button>
             <button data-retter="drikkevarer">Drikkevarer</button>
-        </nav>
 
+        </nav>
     </header>
+
     <template>
         <article class="indhold">
 
@@ -115,7 +127,7 @@
     <main>
 
         <section id="menu">
-<h1>MENU</h1>
+
 
 
         </section>
