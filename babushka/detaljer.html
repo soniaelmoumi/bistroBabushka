@@ -6,42 +6,53 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@200;600&display=swap" rel="stylesheet">
     <title>Bistro Babushka</title>
-    <link rel="stylesheet" href="">
+
+
     <style>
+        article {
+            width: 50%;
+            margin: 0 auto;
+            display: block;
+            border: 1px solid #d32d27;
+            padding: 8px;
+
+        }
+
         img {
             width: 100%;
         }
 
-        section {
-            padding: 30px;
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
-            grid-template-rows: 1fr 1fr 1fr 1fr;
-            grid-gap: 20px;
-        }
-
-        article {
-            border: 1px solid black;
-        }
-
         p {
             text-align: center;
+            max-width: 600px;
+            margin: 20px auto;
+        font-family: 'Poppins', sans-serif;
+
+
         }
 
         h2 {
             text-align: center;
+            font-family: 'Poppins', sans-serif;
+
+
         }
 
-        nav {
-            float: none;
-            position: absolute;
-            top: 2%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            padding: 10px;
+        button {
+            border: none;
+            background-color: white;
+            color: #073da3;
+            font-weight: 600;
+            align-content: center;
+            font-family: 'Poppins', sans-serif;
         }
 
+        button:hover {
+            color: #d32d27;
+        }
     </style>
 </head>
 
@@ -49,29 +60,23 @@
 
 <body>
     <header>
-        <h1></h1>
-        <nav>
-            <button>Tilbage</button>
+        <!--        <h1></h1>-->
 
-        </nav>
     </header>
 
-        <article class="indhold">
+    <article class="indhold">
 
+        <h2></h2>
+        <img src="#" alt="" class="billede">
+        <!--            <p class="id"></p>-->
+        <p class="kategori"></p>
+        <p class="langBeskrivelse"></p>
+        <p class="kortBeskrivelse"></p>
+        <p class="oprindelsesRegion"></p>
+        <p class="pris"></p>
+        <button>Tilbage</button>
 
-
-            <h2></h2>
-            <img class="billede">
-<!--            <p class="id"></p>-->
-            <p class="kategori"></p>
-            <p class="langBeskrivelse"></p>
-            <p class="kortBeskrivelse"></p>
-            <p class="oprindelsesRegion"></p>
-            <p class="pris"></p>
-
-
-
-        </article>
+    </article>
 
 
 
@@ -122,7 +127,7 @@
 
             function vis() {
 
-        console.log("vis indhold");
+                console.log("vis indhold");
 
                 document.querySelector("h2").textContent = ret.navn;
 
@@ -131,10 +136,10 @@
 
                 document.querySelector(".pris").textContent = ret.pris + " DKK";
 
-            document.querySelector(".oprindelsesRegion").textContent = "Fra " + ret.oprindelsesregion;
+                document.querySelector(".oprindelsesRegion").textContent = "Fra " + ret.oprindelsesregion;
 
 
-    document.querySelector("button").addEventListener("click", tilbageTilRetter)
+                document.querySelector("button").addEventListener("click", tilbageTilRetter)
             }
 
             function tilbageTilRetter() {
@@ -144,10 +149,5 @@
             }
 
         }
-
     </script>
-</body>
-
-
-
-</html>
+</body></html>
